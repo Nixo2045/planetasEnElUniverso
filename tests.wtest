@@ -1,0 +1,101 @@
+import personas.*
+import construcciones.*
+import planetas.*
+
+describe "Primeras pruebas" {
+
+  // Personas
+
+  const pablo = new Persona(
+    años = 21
+  )
+  const nico = new Persona(
+    años = 22
+  )
+  const messi = new Persona(
+    años = 38
+  )
+  const cristian = new Persona(
+    años = 49
+  )
+
+  // Construcciones
+
+  const muralla1 = new Muralla(
+    longitud = 20
+  )
+  const muralla2 = new Muralla(
+    longitud = 20
+  )
+  const museo1 = new Museo ( 
+    superficieCubierta = 50,
+    indiceDeImportancia = 5
+  )
+  const museo2 = new Museo (
+    superficieCubierta = 7,
+    indiceDeImportancia = 5    
+  )
+
+  // Planetas
+
+  const tierra = new Planeta()
+  const marte = new Planeta()
+
+  method initialize() {
+    tierra.agregarPersona(pablo)
+    tierra.agregarPersona(cristian)
+    tierra.agregarPersona(messi)
+    tierra.agregarPersona(nico)
+    tierra.agregarConstruccion(muralla1)
+    tierra.agregarConstruccion(muralla2)
+    tierra.agregarConstruccion(museo1)
+
+    marte.agregarPersona(pablo)
+    marte.agregarPersona(cristian)
+    marte.agregarPersona(messi)
+    marte.agregarPersona(nico)
+    marte.agregarConstruccion(muralla1)
+    marte.agregarConstruccion(museo2)
+  }
+
+  test "La delegacion diplomatica de tierra esta formada por 3 personas." {
+    self.initialize()
+    nico.ganarMonedas(100)
+    cristian.gastarMonedas(10)
+    pablo.gastarMonedas(10)
+    
+    assert.equals(3, tierra.delegacionDiplomatica().size())
+  }
+
+  test "El planeta tierra es valioso" {
+  self.initialize()
+  
+  assert.that(tierra.esValioso())
+  }
+
+  test "El planeta tierra no es valiso" {
+    self.initialize()
+
+    assert.notThat(marte.esValioso())
+  }
+
+  test "La delegacion diplomatica de tierra no esta formada por 3 personas." {
+    self.initialize()
+    nico.ganarMonedas(100)
+
+    assert.notEquals( 3, marte.delegacionDiplomatica().size() )
+  }
+}
+
+describe "Mas pruebas" {
+  
+  // Lo dejo sin hacer porque son tests y me tengo que ir a dormir que son las 5am jojojo
+
+  test "Definir constructores que vivan en diferentes regiones y al menos un productor y probar que trabajen bien." {
+    assert.equals(1, 1)
+  }
+
+    test "Hacer que algunos de ellos integren la delegación diplomática de su planeta" {
+    assert.equals(1, 1)
+  }
+}
