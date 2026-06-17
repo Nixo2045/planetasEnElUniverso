@@ -21,4 +21,5 @@ class Museo {
             self.error("El índice de importancia debe estar entre 1 y 5")
         }
     }
+    
 }
